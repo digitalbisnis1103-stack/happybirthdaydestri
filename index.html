@@ -488,12 +488,13 @@ opacity:1;
 @media(max-width:480px){
 
 .title{
-font-size:34px;
+font-size:32px;
+line-height:1.2;
 }
 
 .card{
-padding:20px;
-border-radius:25px;
+padding:16px;
+border-radius:24px;
 }
 
 .pin-input{
@@ -502,20 +503,135 @@ height:65px;
 font-size:25px;
 }
 
+/* PAGE 3 - FOTO LEBIH RAPI DI HP */
+#page3{
+justify-content:flex-start;
+overflow-y:auto;
+overflow-x:hidden;
+padding:24px 14px 40px;
+-webkit-overflow-scrolling:touch;
+}
+
+#page3 .title{
+margin-bottom:18px;
+}
+
 .scrapbook{
-height:460px;
+width:100%;
+max-width:370px;
+height:auto;
+min-height:0;
+margin:0 auto 12px;
+overflow:hidden;
+border-radius:22px;
+}
+
+.slider-track{
+height:auto;
 }
 
 .memory{
-width:160px;
+min-width:100%;
+width:100%;
+height:auto;
+padding:10px;
+border-radius:18px;
+box-shadow:0 8px 24px rgba(255,0,70,.14);
 }
 
 .memory img{
-height:180px;
+display:block;
+width:100%;
+height:auto;
+aspect-ratio:4 / 5;
+object-fit:cover;
+object-position:center;
+border-radius:14px;
+background:#f8eeee;
+}
+
+.memory-text{
+margin-top:9px;
+padding:0 4px 2px;
+font-size:13px;
+line-height:1.4;
+}
+
+.tape{
+width:65px;
+height:20px;
+top:-7px;
+}
+
+.slider-arrow{
+width:38px;
+height:38px;
+font-size:22px;
+background:rgba(179,0,33,.72);
+}
+
+.slider-prev{
+left:7px;
+}
+
+.slider-next{
+right:7px;
+}
+
+.slider-dots{
+margin-top:8px;
+gap:6px;
+}
+
+.slider-dot{
+width:7px;
+height:7px;
+}
+
+.slider-dot.active{
+width:19px;
+}
+
+#page3 .btn{
+max-width:370px;
+margin-top:18px;
 }
 
 .sticker{
 width:75px;
+}
+
+}
+
+/* EXTRA SMALL PHONES */
+@media(max-width:360px){
+
+#page3{
+padding-left:10px;
+padding-right:10px;
+}
+
+.scrapbook{
+max-width:340px;
+}
+
+.memory{
+padding:8px;
+}
+
+.memory img{
+aspect-ratio:4 / 5;
+border-radius:12px;
+}
+
+.memory-text{
+font-size:12px;
+}
+
+.slider-arrow{
+width:34px;
+height:34px;
+font-size:20px;
 }
 
 }
