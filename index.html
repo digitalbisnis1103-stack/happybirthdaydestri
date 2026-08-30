@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Happy Birthday ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+width:100%;
+height:100%;
+overflow:hidden;
+font-family:'Poppins',sans-serif;
+background:#fff5f5;
+}
+
+/* BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+linear-gradient(
+to bottom,
+rgba(255,255,255,.7),
+rgba(255,230,230,.9)
+),
+url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+filter:blur(3px);
+z-index:-5;
+}
+
+/* LOVE FLOAT */
+
+.love{
+position:fixed;
+font-size:20px;
+pointer-events:none;
+animation:fall linear infinite;
+opacity:.7;
+z-index:2;
+}
+
+@keyframes fall{
+
+0%{
+transform:
+translateY(-10vh)
+translateX(0);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:
+translateY(110vh)
+translateX(30px);
+opacity:0;
+}
+
+}
+
+/* PAGE */
+
+.page{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:20px;
+text-align:center;
+opacity:0;
+pointer-events:none;
+transition:1s;
+}
+
+.page.active{
+opacity:1;
+pointer-events:auto;
+}
+
+/* TITLE */
+
+.title{
+font-family:'Playfair Display',serif;
+font-size:40px;
+color:#b30021;
+margin-bottom:15px;
+}
+
+.subtitle{
+font-size:15px;
+color:#7a3b46;
+margin-bottom:30px;
+max-width:320px;
+line-height:1.6;
+}
+
+/* CARD */
+
+.card{
+width:100%;
+max-width:360px;
+background:
+rgba(255,255,255,.75);
+backdrop-filter:blur(15px);
+padding:25px;
+border-radius:30px;
+box-shadow:
+0 10px 40px rgba(255,0,70,.12);
+border:1px solid rgba(255,255,255,.4);
+}
+
+/* CALENDAR */
+
+.calendar-title{
+font-size:32px;
+font-family:'Playfair Display',serif;
+color:#b30021;
+margin-bottom:20px;
+}
+
+.calendar{
+display:grid;
+grid-template-columns:repeat(7,1fr);
+gap:10px;
+font-size:16px;
+color:#444;
+}
+
+.calendar div{
+padding:6px;
+text-align:center;
+}
+
+.birthday-date{
+width:38px;
+height:38px;
+margin:auto;
+border-radius:50%;
+background:#ff4d6d;
+display:flex;
+align-items:center;
+justify-content:center;
+color:white;
+font-weight:bold;
+box-shadow:
+0 0 20px rgba(255,0,80,.35);
+}
+
+/* BUTTON */
+
+.btn{
+margin-top:25px;
+width:100%;
+padding:15px;
+border:none;
+border-radius:20px;
+background:
+linear-gradient(
+45deg,
+#ff4d6d,
+#b30021
+);
+color:white;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:active{
+transform:scale(.97);
+}
+
+/* PIN */
+
+.pin-box{
+display:flex;
+justify-content:center;
+gap:10px;
+margin:20px 0;
+}
+
+.pin-input{
+width:60px;
+height:70px;
+border:none;
+outline:none;
+border-radius:18px;
+background:#fff0f3;
+font-size:28px;
+text-align:center;
+color:#b30021;
+font-weight:bold;
+box-shadow:
+inset 0 3px 10px rgba(0,0,0,.05);
+}
+
+/* SCRAPBOOK SLIDER */
+
+.scrapbook{
+    position:relative;
+    width:100%;
+    max-width:380px;
+    height:430px;
+    margin-bottom:25px;
+    overflow:hidden;
+    border-radius:25px;
+}
+
+.slider-track{
+    display:flex;
+    height:100%;
+    transition:transform .45s ease;
+    touch-action:pan-y;
+}
+
+.memory{
+    min-width:100%;
+    height:100%;
+    background:white;
+    padding:15px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(255,0,70,.15);
+    position:relative;
+}
+
+.memory img{
+    width:100%;
+    height:330px;
+    object-fit:cover;
+    border-radius:15px;
+}
+
+.memory-text{
+    margin-top:10px;
+    font-size:14px;
+    color:#b30021;
+    font-family:'Playfair Display',serif;
+    text-align:center;
+}
+
+.tape{
+    position:absolute;
+    top:-10px;
+    left:50%;
+    transform:translateX(-50%) rotate(-5deg);
+    width:80px;
+    height:25px;
+    background:rgba(255,220,220,.8);
+    border-radius:8px;
+    z-index:2;
+}
+
+.slider-arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(179,0,33,.8);
+    color:white;
+    font-size:24px;
+    cursor:pointer;
+    z-index:5;
+}
+
+.slider-prev{left:10px;}
+.slider-next{right:10px;}
+
+.slider-dots{
+    display:flex;
+    justify-content:center;
+    gap:7px;
+    margin-top:12px;
+}
+
+.slider-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#e6a4b0;
+    transition:.3s;
+}
+
+.slider-dot.active{
+    width:22px;
+    border-radius:10px;
+    background:#b30021;
+}
+
+/* STICKER */
+
+.sticker{
+position:absolute;
+width:90px;
+bottom:10px;
+right:-10px;
+animation:float 3s ease-in-out infinite;
+}
+
+/* FLOAT */
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* FINAL */
+
+.final-text{
+font-size:30px;
+font-family:'Playfair Display',serif;
+color:#b30021;
+margin-bottom:20px;
+}
+
+.final-message{
+font-size:15px;
+line-height:1.8;
+color:#6d4b52;
+}
+
+/* POPUP */
+
+.popup-error{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.45);
+backdrop-filter:blur(5px);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fade .3s ease;
+}
+
+.popup-box{
+width:90%;
+max-width:320px;
+background:white;
+padding:30px 20px;
+border-radius:28px;
+text-align:center;
+box-shadow:
+0 10px 40px rgba(255,0,70,.2);
+animation:popupUp .35s ease;
+}
+
+.popup-emoji{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.popup-box h2{
+color:#b30021;
+margin-bottom:10px;
+font-family:'Playfair Display',serif;
+}
+
+.popup-box p{
+color:#666;
+font-size:14px;
+line-height:1.6;
+margin-bottom:20px;
+}
+
+.popup-box button{
+border:none;
+padding:12px 25px;
+border-radius:15px;
+background:
+linear-gradient(
+45deg,
+#ff4d6d,
+#b30021
+);
+color:white;
+font-weight:600;
+cursor:pointer;
+}
+
+/* MUSIC BUTTON */
+
+.music-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+width:55px;
+height:55px;
+border:none;
+border-radius:50%;
+background:
+linear-gradient(
+45deg,
+#ff4d6d,
+#b30021
+);
+color:white;
+font-size:22px;
+cursor:pointer;
+z-index:999;
+box-shadow:
+0 10px 30px rgba(255,0,70,.25);
+animation:spinMusic 5s linear infinite;
+}
+
+@keyframes spinMusic{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+/* ANIMATION */
+
+@keyframes popupUp{
+
+from{
+transform:
+translateY(30px)
+scale(.9);
+opacity:0;
+}
+
+to{
+transform:
+translateY(0)
+scale(1);
+opacity:1;
+}
+
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:480px){
+
+.title{
+font-size:34px;
+}
+
+.card{
+padding:20px;
+border-radius:25px;
+}
+
+.pin-input{
+width:55px;
+height:65px;
+font-size:25px;
+}
+
+.scrapbook{
+height:460px;
+}
+
+.memory{
+width:160px;
+}
+
+.memory img{
+height:180px;
+}
+
+.sticker{
+width:75px;
+}
+
+}
+
+/* =========================
+   PAGE 4 SCROLL
+========================= */
+
+#page4{
+    height:100%;
+    min-height:100vh;
+    overflow-y:auto;
+    overflow-x:hidden;
+    justify-content:flex-start;
+    padding-top:40px;
+    padding-bottom:40px;
+}
+
+#page4 .card{
+    margin-bottom:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOVE FLOAT -->
+
+<script>
+
+const icons = ['❤️','💕','💖'];
+
+for(let i=0;i<30;i++){
+
+let love = document.createElement('div');
+
+love.classList.add('love');
+
+love.innerHTML =
+icons[Math.floor(Math.random()*icons.length)];
+
+love.style.left =
+Math.random()*100 + 'vw';
+
+love.style.animationDuration =
+5 + Math.random()*7 + 's';
+
+love.style.fontSize =
+15 + Math.random()*20 + 'px';
+
+document.body.appendChild(love);
+
+}
+
+</script>
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+<h1 class="title">
+It's Your Birthday ❤️
+</h1>
+
+<div class="card">
+
+<div class="calendar-title">
+Agustus
+</div>
+
+<div class="calendar">
+
+    <div>S</div>
+    <div>M</div>
+    <div>T</div>
+    <div>W</div>
+    <div>T</div>
+    <div>F</div>
+    <div>S</div>
+
+    <!-- Minggu - Sabtu -->
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div>1</div>
+
+    <!-- 2 - 8 -->
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+    <div>7</div>
+    <div>8</div>
+
+    <!-- 9 - 15 -->
+    <div>9</div>
+    <div>10</div>
+    <div>11</div>
+    <div>12</div>
+    <div>13</div>
+    <div>14</div>
+    <div>15</div>
+
+    <!-- 16 - 22 -->
+    <div>16</div>
+    <div>17</div>
+    <div>18</div>
+    <div>19</div>
+    <div>20</div>
+    <div>21</div>
+    <div>22</div>
+
+    <!-- 23 - 29 -->
+    <div>23</div>
+    <div>24</div>
+    <div>25</div>
+    <div>26</div>
+    <div>27</div>
+    <div>28</div>
+    <div>29</div>
+
+    <!-- 30 - 31 -->
+    <div>30</div>
+    <div class="birthday-date">
+        31
+    </div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+</div>
+<div style="
+margin-top:25px;
+font-size:18px;
+color:#b30021;
+font-family:'Playfair Display',serif;
+">
+the day my favorite person was born 💌
+</div>
+
+<button class="btn" onclick="nextPage(2)">
+Continue
+</button>
+
+</div>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+<h1 class="title">
+Birthday PIN 🎂
+</h1>
+
+<p class="subtitle">
+enter the special birthday date
+</p>
+
+<div class="card">
+
+<div class="pin-box">
+
+<input maxlength="1" class="pin-input">
+<input maxlength="1" class="pin-input">
+<input maxlength="1" class="pin-input">
+<input maxlength="1" class="pin-input">
+
+</div>
+
+<button class="btn" onclick="checkPin()">
+Unlock
+</button>
+
+</div>
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+<h1 class="title">
+Our Memories ❤️
+</h1>
+
+<div class="scrapbook" id="memorySlider">
+
+    <div class="slider-track" id="sliderTrack">
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto1.jpg">
+            <div class="memory-text">our first picture</div>
+        </div>
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto2.jpg">
+            <div class="memory-text">HAPPY BIRTHDAY &lt;3</div>
+        </div>
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto3.jpg">
+            <div class="memory-text">the happy little moment</div>
+        </div>
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto4.jpg">
+            <div class="memory-text">you &amp; me forever 🌷</div>
+        </div>
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto5.jpg">
+            <div class="memory-text">ILYSM DARLING :D</div>
+        </div>
+
+        <div class="memory">
+            <div class="tape"></div>
+            <img src="foto6.jpeg">
+            <div class="memory-text">my favorite person</div>
+        </div>
+
+    </div>
+
+    <button class="slider-arrow slider-prev" onclick="moveSlide(-1)">‹</button>
+    <button class="slider-arrow slider-next" onclick="moveSlide(1)">›</button>
+
+</div>
+
+<div class="slider-dots" id="sliderDots">
+    <div class="slider-dot active"></div>
+    <div class="slider-dot"></div>
+    <div class="slider-dot"></div>
+    <div class="slider-dot"></div>
+    <div class="slider-dot"></div>
+    <div class="slider-dot"></div>
+</div>
+
+<button class="btn" onclick="nextPage(4)">
+Continue
+</button>
+
+</section>
+
+
+<!-- PAGE 4 -->
+
+<section class="page" id="page4">
+
+<h1 class="title">
+Happy Birthday ❤️
+</h1>
+
+<div class="card">
+
+<div class="final-text">
+For my favorite person 🌷
+</div>
+
+<div class="final-message">
+
+Happy birthday, Destri! I hope this new age brings you many good things, 
+happy moments, and beautiful memories. May God always bless you, protect you, and guide you through every step. 
+Keep being the kind and lovely person you are, no matter what life brings.
+<br><br>
+
+Having you around makes life feel a little warmer and brighter, 
+especially for me. I’m really grateful for every moment we’ve shared, and I hope this year will be a good one for you. 
+Stay happy, stay you, and enjoy your day, sayang. I love you <3
+
+</div>
+
+<button class="btn" onclick="location.reload()">
+Replay
+</button>
+
+</div>
+
+</section>
+
+<!-- BACKGROUND MUSIC -->
+
+<audio id="bgMusic" autoplay loop>
+<source src="birthday.mp3" type="audio/mp3">
+</audio>
+
+<!-- MUSIC BUTTON -->
+
+<button class="music-btn" onclick="toggleMusic()">
+🎵
+</button>
+
+<script>
+
+/* PAGE */
+
+function nextPage(page){
+
+document.querySelectorAll('.page')
+.forEach(p=>p.classList.remove('active'));
+
+document.getElementById('page'+page)
+.classList.add('active');
+
+}
+
+/* PIN */
+
+function checkPin(){
+
+let inputs =
+document.querySelectorAll('.pin-input');
+
+let pin = '';
+
+inputs.forEach(input=>{
+pin += input.value;
+});
+
+if(pin === '3129'){
+
+nextPage(3);
+
+}else{
+
+let popup = document.createElement('div');
+
+popup.classList.add('popup-error');
+
+popup.innerHTML = `
+<div class="popup-box">
+<div class="popup-emoji">💔</div>
+<h2>Wrong PIN</h2>
+<p>hmm... that's not the birthday date :(</p>
+<button onclick="closePopup()">Try Again</button>
+</div>
+`;
+
+document.body.appendChild(popup);
+
+}
+
+}
+
+/* CLOSE POPUP */
+
+function closePopup(){
+
+document.querySelector('.popup-error')
+.remove();
+
+}
+
+/* PHOTO SLIDER */
+
+let currentSlide = 0;
+const totalSlides = 6;
+const sliderTrack = document.getElementById('sliderTrack');
+const sliderDots = document.querySelectorAll('.slider-dot');
+
+function showSlide(index){
+    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+    sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    sliderDots.forEach((dot, i)=>{
+        dot.classList.toggle('active', i === currentSlide);
+    });
+}
+
+function moveSlide(direction){
+    let next = currentSlide + direction;
+
+    if(next < 0) next = totalSlides - 1;
+    if(next >= totalSlides) next = 0;
+
+    showSlide(next);
+}
+
+let startX = 0;
+let endX = 0;
+
+sliderTrack.addEventListener('touchstart', e=>{
+    startX = e.touches[0].clientX;
+});
+
+sliderTrack.addEventListener('touchend', e=>{
+    endX = e.changedTouches[0].clientX;
+
+    if(startX - endX > 50){
+        moveSlide(1);
+    }else if(endX - startX > 50){
+        moveSlide(-1);
+    }
+});
+
+let mouseDown = false;
+let mouseStart = 0;
+
+sliderTrack.addEventListener('mousedown', e=>{
+    mouseDown = true;
+    mouseStart = e.clientX;
+});
+
+document.addEventListener('mouseup', e=>{
+    if(!mouseDown) return;
+
+    const diff = mouseStart - e.clientX;
+
+    if(Math.abs(diff) > 50){
+        moveSlide(diff > 0 ? 1 : -1);
+    }
+
+    mouseDown = false;
+});
+
+/* MUSIC */
+
+const music =
+document.getElementById('bgMusic');
+
+function toggleMusic(){
+
+if(music.paused){
+
+music.play();
+
+}else{
+
+music.pause();
+
+}
+
+}
+
+/* AUTOPLAY MOBILE */
+
+document.body.addEventListener(
+'click',
+function(){
+
+music.play();
+
+},
+{ once:true }
+
+);
+
+</script>
+
+</body>
+</html>
